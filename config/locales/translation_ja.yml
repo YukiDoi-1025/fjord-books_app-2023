@@ -9,3 +9,10 @@ ja:
         memo: メモ
         picture: 画像
         title: タイトル
+
+  layout:
+    logged_in_html: "<strong>%{email}</strong>でログイン。"
+    edit_profile: ユーザ編集
+    log_out: ログアウト
+    sign_up: アカウント登録
+    log_in: ログイン
