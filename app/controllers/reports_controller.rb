@@ -1,6 +1,6 @@
 class ReportsController < ApplicationController
   before_action :set_report, only: %i[show edit update destroy]
-  before_action :ensure_user, only: %i[edit update destroy]
+  before_action :ensure_correct_user, only: %i[edit update destroy]
 
   # GET /reports or /reports.json
   def index
@@ -20,7 +20,12 @@ class ReportsController < ApplicationController
 
   # POST /reports or /reports.json
   def create
-    @report = Report.new(report_params)
+    # @report = Report.new(
+    #   *report_params,
+    #   user_id: current_user.id
+    # )
+
+    @report = current_user.reports.build(report_params)
 
     respond_to do |format|
       if @report.save
@@ -60,7 +65,7 @@ class ReportsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_report
-    @report = Report.find(params[:id])
+    @report = Report.find_by(id: params[:id])
   end
 
   # Only allow a list of trusted parameters through.
@@ -68,9 +73,11 @@ class ReportsController < ApplicationController
     params.require(:report).permit(:title, :article)
   end
 
-  def ensure_user
-    @reports = current_user.reports
-    @report = @reports.find_by(id: params[:id])
-    redirect_to new_report_path unless @report
+  def ensure_correct_user
+    @report = Report.find_by(id: params[:id])
+    return unless @report.user_id != current_user.id
+
+    flash[:notice] = '権限がありません'
+    redirect_to('/reports')
   end
 end
