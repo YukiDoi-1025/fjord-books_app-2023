@@ -14,3 +14,16 @@
     <%= button_to t('views.common.destroy', name: Report.model_name.human.downcase), @report, method: :delete %>
   <% end %>
 </nav>
+
+<nav>
+  <% @comments.each do |comment| %>
+    <div class="show-item">
+      <%= render comment %>
+    </div>
+    <p>
+        <%= link_to t('views.common.show', name: Comment.model_name.human.downcase), polymorphic_url([@report, comment]) %>
+    </p>
+  <% end %>
+
+  <%= render 'comments/form', commentable: @report, comment: @comment %>
+</nav>

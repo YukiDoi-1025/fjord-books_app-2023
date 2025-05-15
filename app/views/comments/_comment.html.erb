@@ -1,0 +1,22 @@
+<div id="<%= dom_id comment %>">
+  <p>
+    <strong><%= Comment.human_attribute_name(:article) %>:</strong>
+    <%= comment.article %>
+  </p>
+
+  <p>
+    <% if comment.user.name.present? %>
+      <strong><%= User.human_attribute_name(:name) %>:</strong>
+      <%= comment.user.name %>
+    <% else %>
+      <strong><%= User.human_attribute_name(:email) %>:</strong>
+      <%= comment.user.email %>
+    <% end %>
+  </p>
+
+  <p>
+    <strong><%= User.human_attribute_name(:created_at) %>:</strong>
+    <%= comment.created_at %>
+  </p>
+
+</div>
