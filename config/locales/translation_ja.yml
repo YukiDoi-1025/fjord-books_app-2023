@@ -21,6 +21,7 @@ ja:
       report:
         title: タイトル
         article: 本文
+        created_at: 投稿日時
       comment:
         article: コメント
         created_at: 投稿日時

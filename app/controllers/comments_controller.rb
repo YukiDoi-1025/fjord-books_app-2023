@@ -34,7 +34,8 @@ class CommentsController < ApplicationController
         format.html { redirect_to @commentable, notice: t('controllers.common.notice_create', name: Comment.model_name.human) }
         format.json { render :show, status: :created, location: @comment }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        # flash[:notice] = 'バリデーションエラー'
+        format.html { redirect_to @comment.commentable, status: :unprocessable_entity }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end
@@ -87,7 +88,7 @@ class CommentsController < ApplicationController
     @comment = Comment.find_by(id: params[:id])
     return unless @comment.user_id != current_user.id
 
-    flash[:notice] = '権限がありません'
+    flash[:notice] = t('controllers.common.notice_invalid_user')
     redirect_to @comment.commentable
   end
 end

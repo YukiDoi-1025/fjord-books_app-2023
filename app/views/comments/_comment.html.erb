@@ -15,8 +15,8 @@
   </p>
 
   <p>
-    <strong><%= User.human_attribute_name(:created_at) %>:</strong>
-    <%= comment.created_at %>
+    <strong><%= Comment.human_attribute_name(:created_at) %>:</strong>
+    <%= l comment.created_at, format: :long %>
   </p>
 
 </div>
