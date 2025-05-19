@@ -326,7 +326,6 @@ DEPENDENCIES
   jbuilder
   kaminari
   letter_opener_web
-  mini_magick (~> 4.12)
   puma
   rails (~> 7.0.6)
   rubocop (~> 1.45.1)
