@@ -9,3 +9,20 @@ ja:
         memo: メモ
         picture: 画像
         title: タイトル
+
+  views:
+    pagination:
+      first: "&laquo; 最初"
+      last: "最後 &raquo;"
+      previous: "&lsaquo; 前"
+      next: "次 &rsaquo;"
+      truncate: "&hellip;"
+  helpers:
+    page_entries_info:
+      one_page:
+        display_entries:
+          zero: "%{entry_name}は見つかりません"
+          one: "<b>1</b>つの%{entry_name}を表示"
+          other: "<b>全ての%{count}</b> %{entry_name}を表示"
+      more_pages:
+        display_entries: "全体で%{entry_name} <b>%{first}–%{last}</b> of <b>%{total}</b>を表示"
