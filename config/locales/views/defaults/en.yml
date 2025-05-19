@@ -1,0 +1,17 @@
+en:
+  caption:
+    index: Books
+    new: New book
+    edit: Editing book
+
+  link:
+    show: Show this book
+    new: New book
+    back: Back to books
+    edit: Edit this book
+    destroy: Destroy this book
+
+  message:
+    create: Book was successfully created.
+    update: Book was successfully updated.
+    destroy: Book was successfully destroyed.

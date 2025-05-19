@@ -80,3 +80,9 @@ group :test do
 end
 
 gem 'carrierwave'
+
+gem 'rails-i18n'
+
+group :development do
+  gem 'i18n_generators'
+end
