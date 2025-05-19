@@ -1,9 +1,9 @@
-<h1><%= t 'head.new' %></h1>
+<h1><%= t 'caption.new' %></h1>
 
 <%= render "form", book: @book %>
 
 <br>
 
 <nav class="page-nav">
-  <%= link_to (t 'link.back'), books_path %>
+  <%= link_to t('link.back'), books_path %>
 </nav>

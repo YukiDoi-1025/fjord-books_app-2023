@@ -1,2 +1,3 @@
 en:
-  book: Book  #g
+  models:
+    book: Book  #g
