@@ -97,6 +97,7 @@ GEM
       image_processing (~> 1.1)
       marcel (~> 1.0.0)
       ssrf_filter (~> 1.0)
+
     childprocess (5.1.0)
       logger (~> 1.5)
     concurrent-ruby (1.2.2)
@@ -114,6 +115,7 @@ GEM
     devise-i18n (1.13.0)
       devise (>= 4.9.0)
       rails-i18n
+
     erb_lint (0.4.0)
       activesupport
       better_html (>= 2.0.1)
