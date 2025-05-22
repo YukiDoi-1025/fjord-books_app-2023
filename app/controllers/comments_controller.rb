@@ -22,31 +22,25 @@ class CommentsController < ApplicationController
     @comment.user = current_user
     @comment.commentable = @commentable
 
-    respond_to do |format|
-      if @comment.save
-        format.html { redirect_to @commentable, notice: t('controllers.common.notice_create', name: Comment.model_name.human) }
-      else
-        format.html { redirect_to @comment.commentable, status: :unprocessable_entity }
-      end
+    if @comment.save
+      redirect_to @commentable, notice: t('controllers.common.notice_create', name: Comment.model_name.human)
+    else
+      redirect_to @comment.commentable, status: :unprocessable_entity
     end
   end
 
   def update
-    respond_to do |format|
-      if @comment.update(comment_params)
-        format.html { redirect_to polymorphic_url([@commentable, @comment]), notice: t('controllers.common.notice_update', name: Comment.model_name.human) }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-      end
+    if @comment.update(comment_params)
+      redirect_to polymorphic_url([@commentable, @comment]), notice: t('controllers.common.notice_update', name: Comment.model_name.human)
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
     @comment.destroy
 
-    respond_to do |format|
-      format.html { redirect_to @commentable, notice: t('controllers.common.notice_destroy', name: Comment.model_name.human) }
-    end
+    redirect_to @commentable, notice: t('controllers.common.notice_destroy', name: Comment.model_name.human)
   end
 
   private
@@ -71,7 +65,6 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     return unless @comment.user_id != current_user.id
 
-    flash[:notice] = t('controllers.common.notice_invalid_user')
-    redirect_to @comment.commentable
+    redirect_to @comment.commentable, alert: t('controllers.common.alert_invalid_user')
   end
 end
