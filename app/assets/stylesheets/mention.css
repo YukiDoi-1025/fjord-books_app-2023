@@ -31,10 +31,3 @@ mentions-container
 .mentions-container li:last-of-type {
     padding-bottom: 0;
 }
-
-.mentions-container li small {
-    display: block;
-    font-size: 12px;
-    margin-top: 8px;
-}
-
