@@ -18,4 +18,16 @@ module ApplicationHelper
   def format_content(content)
     safe_join(content.split("\n"), tag.br)
   end
+
+  def make_mentions(report)
+    ReportMention.where(mentioning: report).each(&:destroy)
+
+    report.content.scan(%r{http://localhost:3000/reports/\d+}).each do |url|
+      ReportMention.create(mentioning: report, mentioned: Report.find(url.split('/')[-1]))
+    end
+  end
+
+  def text_t_url(content)
+    sanitize(content.gsub(%r{http://localhost:3000/reports/\d+}) { " <a href='#{::Regexp.last_match(0)}' target='_blank'\>#{::Regexp.last_match(0)}</a> " })
+  end
 end

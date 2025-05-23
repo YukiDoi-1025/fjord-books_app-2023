@@ -1,0 +1,11 @@
+<div class="mentions-container">
+  <% mentioned_reports = report.mentioned_reports %>
+  <% if mentioned_reports.present? %>
+    <strong><%= ReportMention.model_name.human %>:</strong>
+    <ul>
+      <% mentioned_reports.each do |mentioned_report| %>
+        <li> <%= link_to t('views.common.mention', title: mentioned_report.title), mentioned_report %> </li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
