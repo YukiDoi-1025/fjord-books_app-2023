@@ -1,0 +1,17 @@
+<%= form_with(model: report) do |form| %>
+  <%= render 'layouts/error_messages', model: report %>
+
+  <div>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :article, style: "display: block" %>
+    <%= form.text_area :article %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

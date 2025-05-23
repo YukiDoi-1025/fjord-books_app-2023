@@ -4,9 +4,26 @@
   <%= render @book %>
 </div>
 
+<div class="show-item">
+  <% if @comments.present? %>
+    <% @comments.each do |comment| %>
+      <div class="show-item">
+        <%= render comment %>
+      </div>
+      <p>
+          <%= link_to t('views.common.show', name: Comment.model_name.human.downcase), polymorphic_url([@book, comment]) %>
+      </p>
+    <% end %>
+  <% else %>
+    <%= t('views.common.not_exist', name: Comment.model_name.human.downcase) %>
+  <% end %>
+
+  <%= render 'comments/form', commentable: @book, comment: @comment %>
+</div>
+
 <nav class="page-nav">
   <%= link_to t('views.common.edit', name: Book.model_name.human.downcase), edit_book_path(@book) %> |
-  <%= link_to t('views.common.back', name: i18n_pluralize(Book.model_name.human.downcase)), books_path %>
+  <%= link_to t('views.common.back', name: i18n_pluralize(Book.model_name.human.downcase)), books_path %> |
 
   <%= button_to t('views.common.destroy', name: Book.model_name.human.downcase), @book, method: :delete %>
 </nav>

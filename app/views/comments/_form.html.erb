@@ -1,0 +1,12 @@
+<%= form_with model: [commentable, comment], local: true do |form| %>
+  <%= render 'layouts/error_messages', model: comment %>
+
+  <div required="">
+    <%= form.label :article, style: "display: block" %>
+    <%= form.text_area :article, required: true %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

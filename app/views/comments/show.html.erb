@@ -1,0 +1,16 @@
+<h1><%= t('views.common.title_show', name: Comment.model_name.human) %></h1>
+
+<div class="show-item">
+  <%= render @comment %>
+</div>
+
+<nav class="page-nav">
+  <% if current_user && current_user.id == @comment.user_id %>
+    <%= link_to t('views.common.edit', name: Comment.model_name.human.downcase), polymorphic_url([@commentable, @comment], action: 'edit') %> |
+  <% end %>
+  <%= link_to t('views.detail.back', name: i18n_pluralize(@commentable.model_name.human.downcase)), polymorphic_url([@commentable]) %>
+
+  <% if current_user && current_user.id == @comment.user_id %>
+    <%= button_to t('views.common.destroy', name: Comment.model_name.human.downcase), polymorphic_url([@commentable, @comment]), method: :delete %>
+  <% end %>
+</nav>
