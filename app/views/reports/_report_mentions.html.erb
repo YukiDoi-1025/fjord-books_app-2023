@@ -1,5 +1,5 @@
 <div class="mentions-container">
-  <% mentioned_reports = report.mentioned_reports %>
+  <% mentioned_reports = report.mentioned_reports.order(:id) %>
   <% if mentioned_reports.present? %>
     <strong><%= ReportMention.model_name.human %>:</strong>
     <ul>
