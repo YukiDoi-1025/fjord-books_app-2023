@@ -17,6 +17,5 @@ class ReportTest < ActiveSupport::TestCase
   test '#created_on' do
     @report.created_at = Time.zone.parse('2025-5-27 12:00:00')
     assert_equal Date.parse('2025-5-27'), @report.created_on
-    assert_not_equal Date.parse('1999-5-27'), @report.created_on
   end
 end

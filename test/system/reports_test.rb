@@ -27,8 +27,8 @@ class ReportsTest < ApplicationSystemTestCase
     click_on '登録する'
 
     assert_text '日報が作成されました。'
-    assert_selector 'p', text: 'サンプルタイトル'
-    assert_selector 'p', text: 'これは日報のサンプルです。'
+    assert_text 'サンプルタイトル'
+    assert_text 'これは日報のサンプルです。'
   end
 
   test 'update Report' do
@@ -40,8 +40,8 @@ class ReportsTest < ApplicationSystemTestCase
     click_on '更新する'
 
     assert_text '日報が更新されました。'
-    assert_selector 'p', text: 'アップデートタイトル'
-    assert_selector 'p', text: 'これは更新された日報です。'
+    assert_text 'アップデートタイトル'
+    assert_text 'これは更新された日報です。'
   end
 
   test 'destroy Report' do
@@ -49,9 +49,9 @@ class ReportsTest < ApplicationSystemTestCase
     click_button 'この日報を削除', match: :first
 
     assert_text '日報が削除されました。'
-    assert_selector 'p', text: 'サンプルタイトル', count: 0
-    assert_selector 'p', text: 'アップデートタイトル', count: 0
-    assert_selector 'p', text: 'これは日報のサンプルです。', count: 0
-    assert_selector 'p', text: 'これは更新された日報です。', count: 0
+    assert_text 'サンプルタイトル', count: 0
+    assert_text 'アップデートタイトル', count: 0
+    assert_text 'これは日報のサンプルです。', count: 0
+    assert_text 'これは更新された日報です。', count: 0
   end
 end
