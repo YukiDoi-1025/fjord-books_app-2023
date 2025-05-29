@@ -4,13 +4,13 @@ class Report < ApplicationRecord
   belongs_to :user
   has_many :comments, as: :commentable, dependent: :destroy
 
-  has_many :mentioning_relationships, class_name: 'ReportMention',
+  has_many :mentioning_relationships, class_name: 'Mention',
                                       foreign_key: :mentioning_id,
                                       dependent: :destroy,
                                       inverse_of: :mentioning
   has_many :mentioning_reports, through: :mentioning_relationships, source: :mentioned
 
-  has_many :mentioned_relationships, class_name: 'ReportMention',
+  has_many :mentioned_relationships, class_name: 'Mention',
                                      foreign_key: :mentioned_id,
                                      dependent: :destroy,
                                      inverse_of: :mentioned
@@ -19,7 +19,7 @@ class Report < ApplicationRecord
   validates :title, presence: true
   validates :content, presence: true
 
-  after_save :make_mentions
+  after_save :recreate_mentions
 
   def editable?(target_user)
     user == target_user
@@ -29,11 +29,13 @@ class Report < ApplicationRecord
     created_at.to_date
   end
 
-  def make_mentions
+  private
+
+  def recreate_mentions
     mentioning_relationships.destroy_all
     content.scan(%r{http://localhost:3000/reports/\d+}).each do |url|
       mentioned_id = url.split('/')[-1]
-      ReportMention.create(mentioning_id: id, mentioned_id:)
+      mentioning_relationships.create(mentioned_id:)
     end
   end
 end
