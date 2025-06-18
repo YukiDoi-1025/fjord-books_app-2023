@@ -9,3 +9,10 @@ en:
         memo: Memo
         picture: Picture
         title: Title
+
+  layout:
+    logged_in_html: "Logged in as <strong>%{email}</strong>."
+    edit_profile: Edit profile
+    log_out: Logout
+    sign_up: Sign up
+    log_in: Login
